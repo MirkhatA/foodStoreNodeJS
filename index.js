@@ -5,7 +5,7 @@ const homeRoutes = require('./routes/home')
 const app = express()
 
 const aboutRoutes = require('./routes/about')
-const menuRoutes = require('./routes/menu')
+const foodsRoutes = require('./routes/foods')
 const contactsRoutes = require('./routes/contacts')
 const addRoutes = require('./routes/add')
 
@@ -22,7 +22,7 @@ app.use(express.static('public'))
 app.use(express.urlencoded({extended: true}))
 
 app.use('/', homeRoutes)
-app.use('/menu', menuRoutes)
+app.use('/foods', foodsRoutes)
 app.use('/about', aboutRoutes)
 app.use('/contacts', contactsRoutes)
 app.use('/add', addRoutes)

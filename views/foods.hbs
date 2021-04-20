@@ -1,0 +1,26 @@
+<h1>Menu</h1>
+
+{{!-- check is there any food --}}
+{{#if foods.length }}
+{{#each foods}}
+<div class="row">
+    <div class="col s6 offset-s3">
+        <div class="card">
+            <div class="card-image">
+                <img src="{{img}}" alt="{{title}}">
+                <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+            </div>
+            <div class="card-content">
+                <span class="card-title">{{title}}</span>
+                <p class="price">{{price}}</p>
+            </div>
+            <div class="card-action">
+                <a href="/foods/{{id}}">Open</a>
+            </div>
+        </div>
+    </div>
+</div>
+{{/each}}
+{{else}}
+<pre>Nothing(</pre>
+{{/if}}

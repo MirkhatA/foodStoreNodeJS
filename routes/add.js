@@ -16,7 +16,7 @@ router.post('/', async (req, res) => {
 
     await food.save()
 
-    res.redirect('/menu')
+    res.redirect('/foods')
 })
 
 module.exports = router

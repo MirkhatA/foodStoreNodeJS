@@ -14,6 +14,7 @@ class Food {
         return{
             title: this.title,
             price: this.price,
+            img: this.img,
             id: this.id
         }
     }
