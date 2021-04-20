@@ -11,8 +11,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/uuid": "^8.3.0",
     "expree": "^0.0.7",
-    "express-handlebars": "^5.3.0"
+    "express-handlebars": "^5.3.0",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"
