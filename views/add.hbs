@@ -1,0 +1,23 @@
+<h1>Add food</h1>
+
+<form action="/add" method="post">
+    <div class="input-field">
+        <input id="title" name="title" type="text" class="validate" required>
+        <label for="title">Food name</label>
+        <span class="helper-text" data-error="Enter food name"></span>
+    </div>
+
+    <div class="input-field">
+        <input id="price" name="price" type="text" class="validate" required min="1">
+        <label for="price">Food price</label>
+        <span class="helper-text" data-error="Enter food price"></span>
+    </div>
+
+    <div class="input-field">
+        <input id="img" name="image" type="text" class="validate" required>
+        <label for="img">URL image</label>
+        <span class="helper-text" data-error="Enter url img"></span>
+    </div>
+
+    <button class="btn btn-primary">Add course</button>
+</form>

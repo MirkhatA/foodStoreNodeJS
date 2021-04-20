@@ -4,21 +4,31 @@
             Tastie
         </a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li class="active">
-                <a href="#">Sale</a>
-            </li>
+
+            {{#if isHome}} <li class="active">
+            {{else}} <li> {{/if}}
+                <a href="/">Sale</a></li>
+        
+            {{#if isMenu}} <li class="active">
+            {{else}} <li> {{/if}}
+                <a href="menu">Menu</a> </li>
+
+            {{#if isAbout}} <li class="active">
+            {{else}} <li> {{/if}}
+                <a href="about">About</a></li>
+
+            {{#if isContacts}} <li class="active">
+            {{else}} <li> {{/if}}
+                <a href="contacts">Contacts</a></li>
+
             <li>
-                <a href="#">Menu</a>
+                <a href="#">login</a>
             </li>
-            <li>
-                <a href="#">About</a>
-            </li>
-            <li>
-                <a href="#">Contacts</a>
-            </li>
-            <li>
-                <a href="">login</a>
-            </li>
+
+            {{#if isAdd}} <li class="active">
+            {{else}} <li> {{/if}}
+                <a href="add">Add course</a></li>
+
         </ul>
     </div>
 </nav>
