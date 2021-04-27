@@ -11,15 +11,15 @@
         
             {{#if isFoods}} <li class="active">
             {{else}} <li> {{/if}}
-                <a href="foods">Menu</a> </li>
+                <a href="/foods">Menu</a> </li>
 
             {{#if isAbout}} <li class="active">
             {{else}} <li> {{/if}}
-                <a href="about">About</a></li>
+                <a href="/about">About</a></li>
 
             {{#if isContacts}} <li class="active">
             {{else}} <li> {{/if}}
-                <a href="contacts">Contacts</a></li>
+                <a href="/contacts">Contacts</a></li>
 
             <li>
                 <a href="#">login</a>
@@ -27,8 +27,12 @@
 
             {{#if isAdd}} <li class="active">
             {{else}} <li> {{/if}}
-                <a href="add">Add food</a></li>
+                <a href="/add">Add food</a></li>
 
+
+            {{#if isCard}} <li class="active">
+            {{else}} <li> {{/if}}
+                <a href="/card">Card</a></li>
         </ul>
     </div>
 </nav>

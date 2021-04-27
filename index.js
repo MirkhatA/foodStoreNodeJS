@@ -2,12 +2,14 @@ const express = require('express')
 const path = require('path')
 const exphbs = require('express-handlebars')
 const homeRoutes = require('./routes/home')
-const app = express()
-
+const cardRoutes = require('./routes/card')
 const aboutRoutes = require('./routes/about')
 const foodsRoutes = require('./routes/foods')
 const contactsRoutes = require('./routes/contacts')
 const addRoutes = require('./routes/add')
+
+const app = express()
+
 
 const hbs = exphbs.create({
     defaultLayout: 'main',
@@ -26,6 +28,7 @@ app.use('/foods', foodsRoutes)
 app.use('/about', aboutRoutes)
 app.use('/contacts', contactsRoutes)
 app.use('/add', addRoutes)
+app.use('/card', cardRoutes)
 
 const PORT = process.env.PORT || 3000
 
