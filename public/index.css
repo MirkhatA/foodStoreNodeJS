@@ -1,3 +1,23 @@
 .nav-wrapper{
     padding: 0 2rem;
 }
+
+.food {
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.food h1{
+    margin-bottom: 2rem;
+}
+
+.food img{
+    max-width: 600px;
+    height: auto;
+}
+
+.food .price.big {
+    font-size: 2.5rem;
+}

@@ -11,4 +11,8 @@ router.get('/', async (req, res) => {
     })
 })
 
+router.get('/:id', (req, res) => {
+    res.render('food')
+})
+
 module.exports = router
