@@ -1,0 +1,25 @@
+<h1>Edit {{food.title}}</h1>
+
+<form action="/foods/edit" method="post">
+    <div class="input-field">
+        <input id="title" name="title" type="text" class="validate" required value="{{food.title}}">
+        <label for="title">Food name</label>
+        <span class="helper-text" data-error="Enter food name"></span>
+    </div>
+
+    <div class="input-field">
+        <input id="price" name="price" type="text" class="validate" required min="1" value="{{food.price}}">
+        <label for="price">Food price</label>
+        <span class="helper-text" data-error="Enter food price"></span>
+    </div>
+
+    <div class="input-field">
+        <input id="img" name="img" type="text" class="validate" required value="{{food.img}}">
+        <label for="img">URL image</label>
+        <span class="helper-text" data-error="Enter url img"></span>
+    </div>
+
+    <input type="hidden" name="id" value="{{food.id}}">
+
+    <button class="btn btn-primary">Edit food</button>
+</form>

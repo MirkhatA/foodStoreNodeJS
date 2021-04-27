@@ -19,6 +19,29 @@ class Food {
         }
     }
 
+    // update method
+    static async update(food) {
+        const foods = await Food.getAll()
+
+        const idx = foods.findIndex(c => c.id === food.id)
+        foods[idx] = food
+
+        return new Promise((resolve, reject) => {
+            fs.writeFile(
+                path.join(__dirname, '..', 'data', 'foods.json'),
+                JSON.stringify(foods),
+                (err) => {
+                    if (err) {
+                       reject(err) 
+                    }
+                    else {
+                        resolve()
+                    }
+                }
+            )    
+        })
+    }
+
     // save method
     async save() {
         const foods = await Food.getAll();
@@ -39,8 +62,6 @@ class Food {
             )    
         })
 
-        
-
         console.log('Foods', foods)
     }
 
@@ -59,6 +80,11 @@ class Food {
                 }
             )
         })
+    }
+
+    static async getById(id) {
+        const foods = await Food.getAll()
+        return foods.find(c => c.id === id)
     }
 }
 
