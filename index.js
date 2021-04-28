@@ -8,6 +8,7 @@ const foodsRoutes = require('./routes/foods')
 const contactsRoutes = require('./routes/contacts')
 const addRoutes = require('./routes/add')
 
+
 const app = express()
 
 
@@ -20,7 +21,7 @@ app.engine('hbs', hbs.engine) //register hbs in engine
 app.set('view engine', 'hbs') //use it
 app.set('views', 'views')
 
-app.use(express.static('public'))
+app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.urlencoded({extended: true}))
 
 app.use('/', homeRoutes)

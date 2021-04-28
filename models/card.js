@@ -37,6 +37,33 @@ class Card {
         })
     }
 
+    static async remove(id) {
+        const card = await Card.fetch()
+
+        const idx = card.foods.findIndex(c => c.id === id)
+        const food = card.foods[idx]
+
+        if (food.count === 1) {
+            // delete
+            card.foods = card.foods.filter(c => c.id !== id)
+        } 
+        else {
+            card.foods[idx].count--
+        }
+
+        card.price -= food.price
+
+        return new Promise((resolve, reject) => {
+            fs.writeFile(p, JSON.stringify(card), err=> {
+                if (err) {
+                    reject(err)
+                } else {
+                    resolve(card)
+                }
+            })
+        })
+    }
+
     static async fetch() {
         return new Promise((resolve, reject) => {
             fs.readFile(p, 'utf8', (err, content) => {
