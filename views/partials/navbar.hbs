@@ -1,38 +1,17 @@
 <nav>
     <div class="nav-wrapper">
-        <a href="#" class="brand-logo">
-            Tastie
-        </a>
+        <a href="#" class="brand-logo">Tasty</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-
-            {{#if isHome}} <li class="active">
-            {{else}} <li> {{/if}}
-                <a href="/">Sale</a></li>
-        
-            {{#if isFoods}} <li class="active">
-            {{else}} <li> {{/if}}
-                <a href="/foods">Menu</a> </li>
-
-            {{#if isAbout}} <li class="active">
-            {{else}} <li> {{/if}}
-                <a href="/about">About</a></li>
-
-            {{#if isContacts}} <li class="active">
-            {{else}} <li> {{/if}}
-                <a href="/contacts">Contacts</a></li>
-
-            <li>
-                <a href="#">login</a>
-            </li>
-
-            {{#if isAdd}} <li class="active">
-            {{else}} <li> {{/if}}
-                <a href="/add">Add food</a></li>
-
-
-            {{#if isCard}} <li class="active">
-            {{else}} <li> {{/if}}
-                <a href="/card">Card</a></li>
+            
+            <li><a href="/">Home</a></li>            
+            <li><a href="/foods">Menu</a></li>            
+            <li><a href="/about">About</a></li>            
+            <li><a href="/contact">Contacts</a></li>            
+            <li><a href="/card">Card</a></li>            
+    
+            <li><a href="/add">Add food</a></li>            
+            
+            
         </ul>
     </div>
 </nav>

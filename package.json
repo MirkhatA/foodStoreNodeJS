@@ -1,5 +1,5 @@
 {
-  "name": "node-express",
+  "name": "food-store",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,9 +11,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/uuid": "^8.3.0",
-    "expree": "^0.0.7",
-    "express-handlebars": "^5.3.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.3.2",
+    "mongoose": "^5.12.7",
     "uuid": "^8.3.2"
   },
   "devDependencies": {

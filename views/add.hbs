@@ -1,22 +1,25 @@
-<h1>Add food</h1>
+<h1>Add new food</h1>
 
 <form action="/add" method="post">
     <div class="input-field">
-        <input id="title" name="title" type="text" class="validate" required>
-        <label for="title">Food name</label>
-        <span class="helper-text" data-error="Enter food name"></span>
+        <input name="title" id="title" type="text" class="validate" required>
+        <label for="title">Food Name</label>
+
+        <span class="helper-text" data-error="wrpng name"></span>
     </div>
 
     <div class="input-field">
-        <input id="price" name="price" type="text" class="validate" required min="1">
+        <input name="price" id="price" type="number" class="validate" required min="1">
         <label for="price">Food price</label>
-        <span class="helper-text" data-error="Enter food price"></span>
+
+        <span class="helper-text" data-error="wrong price"></span>
     </div>
 
     <div class="input-field">
-        <input id="img" name="img" type="text" class="validate" required>
-        <label for="img">URL image</label>
-        <span class="helper-text" data-error="Enter url img"></span>
+        <input name="img" id="img" type="text" class="validate" required>
+        <label for="img">Food image</label>
+
+        <span class="helper-text" data-error="wrong url"></span>
     </div>
 
     <button class="btn btn-primary">Add food</button>

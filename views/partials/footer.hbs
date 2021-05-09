@@ -1,48 +1,51 @@
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
 <script>
-    const toCurrency = price => {
+    const toCurr = price => {
         return new Intl.NumberFormat('ru-RU', {
-            currency: 'rub',
+            currency: 'usd',
             style: 'currency'
         }).format(price)
     }
-    
+
     document.querySelectorAll('.price').forEach(node => {
-        node.textContent = toCurrency(node.textContent)
+        node.textContent = toCurr(node.textContent)  
     })
 
-const $card = document.querySelector('#card')
-
-if ($card) {
-    $card.addEventListener('click', event => {
-        if(event.target.classList.contains('js-remove')) {
-            const id = event.target.dataset.id
-            
-            fetch('/card/remove/' + id, {
-                method: 'delete'
-            }).then(res => res.json())
-            .then(card => {
-                if (card.foods.length) {
-                    const html = card.foods.map(c => {
-                        return `
-                        <tr>
-                            <td>${c.title}</td>
-                            <td>${c.count}</td>
-                            <td>
-                                <button class="btn btn-small js-remove" data-id="${c.id}">Delete</button>
-                            </td>
-                        </tr>
-                        `
-                    }).join('')
-                    $card.querySelector('tbody').innerHTML = html
-                    $card.querySelector('.price').textContent = toCurrency(card.price)
-                } else {
-                    $card.innerHTML = '<p>Empty</p>'
-                }
-            })
-        }
-    })
-}
+    const $card = document.querySelector('#card')
+    
+    if ($card) {
+        $card.addEventListener('click', event => {
+            if (event.target.classList.contains('js-remove')) {
+                const id = event.target.dataset.id
+                
+                
+                fetch('/card/remove/' + id, {
+                    method: 'delete'
+                }).then(res => res.json())
+                .then(card => {
+                    if (card.foods.length) {
+                        const html = card.foods.map(c => {
+                            return `
+                            <tr>
+                                <td>${c.title}</td>
+                                <td>${c.count}</td>
+                                <td>${toCurr(c.price)}</td>
+                                
+                                <td>
+                                    <button class="btn btn-samll js-remove" data-id="${c.id}">Delete</button>
+                                </td>
+                            </tr>
+                            `
+                        }).join('')
+                        $card.querySelector('tbody').innerHTML = html
+                        $card.querySelector('.price').textContent = toCurr(card.price)
+                    } else {
+                        $card.innerHTML = '<p>empty</p>'
+                    }
+                })
+            }
+        })
+    }
 </script>
-
-<!-- Compiled and minified JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
