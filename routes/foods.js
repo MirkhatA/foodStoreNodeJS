@@ -6,6 +6,9 @@ const router = Router()
 //get all foods from db
 router.get('/', async (req, res) => {
     const foods = await Food.find()
+    .populate('userId', 'email name')
+    .select('price title img')
+
     res.render('foods', {
         title: 'Food',
         isFood: true,
@@ -43,6 +46,16 @@ router.post('/edit', async (req, res) => {
     delete req.body.id;
     await Food.findByIdAndUpdate(id, req.body);
     res.redirect('/foods');
+})
+
+// delete method
+router.post('/remove', async (req, res) => {
+    try {
+        await Food.deleteOne({_id: req.body.id});
+        res.redirect('/foods');
+    } catch(e) {
+        console.log(e);
+    }
 })
 
 module.exports = router

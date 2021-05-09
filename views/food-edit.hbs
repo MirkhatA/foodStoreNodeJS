@@ -1,6 +1,6 @@
 <h1>Edit food "{{food.title}}"</h1>
 
-<form action="/foods/edit" method="post">
+<form action="/foods/edit" method="post" class="food-form">
     <div class="input-field">
         <input name="title" id="title" type="text" class="validate" required value="{{food.title}}">
         <label for="title">Food Name</label>
@@ -24,5 +24,11 @@
 
     <input type="hidden" name="id" value="{{food.id}}">
 
-    <button class="btn btn-primary">Edit food</button>
+    <button type="submit" class="btn btn-primary">Edit food</button>
+</form>
+
+{{!-- delete button --}}
+<form action="/foods/remove" method="post">
+    <input type="hidden" name="id" value="{{ food.id }}">
+    <button class="btn red">Delete</button>
 </form>

@@ -30,10 +30,12 @@
     font-size: 2 rem;
 }
 
-
-
 .card-action.actions {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.food-form {
+    margin-bottom: 1rem;
 }

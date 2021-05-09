@@ -9,13 +9,15 @@ router.get('/', (req, res) => {
     })
 })
 
+
+// add food
 router.post('/', async(req, res) => {
     // create new obj
-    // const food = new Food(req.body.title, req.body.price, req.body.img)
     const food = new Food({
         title: req.body.title,
         price: req.body.price,
-        img: req.body.img
+        img: req.body.img,
+        userId: req.user
     })
 
     try {
