@@ -36,8 +36,8 @@ app.use(async (req, res, next) => {
         const user = await User.findById('60982b51f2313757d08b4564')
         req.user = user
         next()
-    } catch (err) {
-        console.log(err);
+    } catch (e) {
+        console.log(e);
     }
     
 })
@@ -85,8 +85,8 @@ async function start() {
         app.listen(PORT, () => {
             console.log(`server is running on port ${PORT}`);
         })
-    } catch (err) {
-        console.log(err)
+    } catch (e) {
+        console.log(e)
     }
 }
 

@@ -1,11 +1,10 @@
 const {Router} = require('express')
-const Card = require('../models/card')
 const Food = require('../models/food')
 const router = Router()
 
 router.post('/add', async(req, res) => {
-    const food = await Food.getById(req.body.id)
-    await Card.add(food)
+    const food = await Food.findById(req.body.id)
+    await req.user.addToCart(food)
 
     // redirect
     res.redirect('/card')
