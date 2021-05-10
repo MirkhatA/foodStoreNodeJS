@@ -9,6 +9,8 @@ const foodRoutes = require('./routes/foods')
 const contactRoutes = require('./routes/contact')
 const aboutRoutes = require('./routes/about')
 const cardRoutes = require('./routes/card')
+const ordersRoutes = require('./routes/orders')
+
 const User = require('./models/user')
 
 const app = express(); // app is result of function express is analogue of server
@@ -52,6 +54,7 @@ app.use('/foods', foodRoutes)
 app.use('/contact',contactRoutes)
 app.use('/about',aboutRoutes)
 app.use('/card', cardRoutes)
+app.use('/orders', ordersRoutes)
 
 
 

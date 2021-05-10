@@ -33,6 +33,10 @@
         <strong>Price: </strong> 
         <p class="price">{{price}}</p>
     </p>
+
+    <form action="/orders" method="post">
+        <button type="submit" class="btn">Make Order</button>
+    </form>
 {{else}}
     empty
 {{/if}}
