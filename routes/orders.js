@@ -33,7 +33,7 @@ router.post('/', async (req, res) => {
         .populate('cart.items.foodId')
         .execPopulate();
     
-        const food = user.cart.items.map(i => ({
+        const foods = user.cart.items.map(i => ({
             count: i.count,
             food: {...i.foodId._doc}
         }))
@@ -46,7 +46,7 @@ router.post('/', async (req, res) => {
             foods: foods
         })
     
-        await order.save()
+        await orders.save()
         await req.user.clearCart()
     
         res.redirect('/orders')
