@@ -1,8 +1,10 @@
 const {Router} = require('express')
 const Food = require('../models/food')
+const auth = require('../middleware/auth')
 const router = Router()
 
-router.get('/', (req, res) => {
+// add middleware for private pages
+router.get('/', auth, (req, res) => {
     res.render('add', {
         title: 'Add food',
         isAdd: true

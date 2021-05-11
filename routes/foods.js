@@ -1,6 +1,7 @@
 const {Router} = require('express')
 const Food = require('../models/food')
 const { route } = require('./add')
+const auth = require('../middleware/auth')
 const router = Router()
 
 //get all foods from db
@@ -27,7 +28,7 @@ router.get('/:id', async (req, res) => {
 })
 
 //edit food by id
-router.get('/:id/edit', async (req, res) => {
+router.get('/:id/edit', auth, async (req, res) => {
     if (!req.query.allow) {
         return res.redirect('/')
     }
@@ -41,7 +42,7 @@ router.get('/:id/edit', async (req, res) => {
 })
 
 //update
-router.post('/edit', async (req, res) => {
+router.post('/edit', auth, async (req, res) => {
     const {id} = req.body;
     delete req.body.id;
     await Food.findByIdAndUpdate(id, req.body);
@@ -49,7 +50,7 @@ router.post('/edit', async (req, res) => {
 })
 
 // delete method
-router.post('/remove', async (req, res) => {
+router.post('/remove', auth, async (req, res) => {
     try {
         await Food.deleteOne({_id: req.body.id});
         res.redirect('/foods');

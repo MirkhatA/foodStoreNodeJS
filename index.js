@@ -3,6 +3,7 @@ const path = require('path'); // module path
 const exphbs = require('express-handlebars') // handlebars
 const mongoose = require('mongoose');
 const session = require('express-session');
+const MongoStore = require('connect-mongodb-session')(session)
 
 const homeRoutes = require('./routes/home') //home route
 const addRoutes = require('./routes/add')
@@ -16,7 +17,7 @@ const authRoutes = require('./routes/auth')
 const varMiddleware = require('./middleware/variables')
 
 const User = require('./models/user')
-
+const MONGODB_URI = `mongodb+srv://mirkhat:vSMJcE5TdYsFKg3@cluster0.hxsu9.mongodb.net/foodstore`;
 const app = express(); // app is result of function express is analogue of server
 
 const hbs = exphbs.create({
@@ -28,6 +29,10 @@ const hbs = exphbs.create({
     }
 })
 
+const store = new MongoStore({
+    collection: 'sessions',
+    uri: MONGODB_URI
+})
 
 
 
@@ -42,7 +47,8 @@ app.use(express.urlencoded({extended: true}))
 app.use(session({
     secret: 'secret',
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    store: store
 }))
 
 app.use(varMiddleware)
@@ -64,26 +70,12 @@ const PORT = process.env.PORT || 3000
 
 async function start() {
     try {
-        const url = `mongodb+srv://mirkhat:vSMJcE5TdYsFKg3@cluster0.hxsu9.mongodb.net/foodstore`;
         //mongodb connection
-        await mongoose.connect(url, {
+        await mongoose.connect(MONGODB_URI, {
             useNewUrlParser: true,
             useFindAndModify: false,
             useUnifiedTopology: true
         })
-
-        //is there users
-        // const candidate = await User.findOne()
-        // if (!candidate) {
-        //     const user = new User({
-        //         email: 'asen.mirkhat@bk.ru',
-        //         name: 'Mirkhat',
-        //         cart: {items: []}
-        //     })
-        //     await user.save()
-        // }
-
-
         //run server
         app.listen(PORT, () => {
             console.log(`server is running on port ${PORT}`);
