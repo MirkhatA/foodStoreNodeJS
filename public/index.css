@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 @font-face {
     font-family: 'Post-No-Bills-Jaffna-SemiBold';
     src:url('Post-No-Bills-Jaffna-SemiBold.ttf.woff') format('woff'),
@@ -10,33 +11,200 @@
 }
 
 
-
-nav{
-    background: black;
-    opacity: 1;
-    /* position: fixed; */
-    z-index: 3;
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
 }
 
-nav a{
-    color: #fff;
-    text-decoration: none;
-    transition: 0.6s;
-}
-
-nav a:hover{
-    color: #F39423;
+.header {
+    min-height: 100vh;
+    width: 100%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(173, 127, 27, 0.336)),url('img/welcome_page.png');
+    background-position: center;
+    background-size: cover;
+    position: relative;
 }
 
 .logo {
     font-family: 'Post-No-Bills-Jaffna-SemiBold';
     font-style: normal;
     font-weight: bold;
-    font-size: 24px;
+    font-size: 30px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.navb {
+    display: flex;
+    padding: 2% 5%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links {
+    flex: 1;
+    text-align: center;
+}
+
+.nav-links ul li{
+    list-style: none;
+    display: inline-block;
+    padding: 8px 12px;
+    position: relative;
+}
+
+.nav-links-right ul li{
+    list-style: none;
+    display: inline-block;
+    padding: 8px 8px;
+}
+
+.nav-links ul li a,
+.nav-links-right ul li a{
+    color: #fff;
+    text-decoration: none;
+    font-size: 15px;
+
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 22px
+}
+
+.nav-links ul li::after,
+.login-hover::after{
+    content: '';
+    width: 0%;
+    height: 2px;
+    background: #F39423;
+    display: block;
+    margin: auto;
+    transition: 0.3s;
+}
+
+.nav-links ul li:hover::after,
+.login-hover:hover::after {
+    width: 60%;
+}
+
+.navb a{
+    color: #fff;
+    transition: 0.4s;
+}
+
+.navb a:hover {
+    color: #F39423;
+    transition: 0.4s;
+}
+
+.icon {
+    transition: 0.4s;
+}
+
+.icon:hover{
+    color: #F39423;
 }
 
 /* navbar */
 
+/* mainpage */
+
+.title {
+    width: 90%;
+    color: #fff;
+    position: absolute;
+    top: 48%;
+    left: 48%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.title h1{
+    font-size: 60px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.title a {
+    
+    display: inline-block;
+    text-decoration: none;
+    color: #000;
+    position: relative;
+    cursor: pointer;
+    padding: 10px 30px;
+    font-weight: bold;
+    background: #E4B741;
+    border-radius: 2px;
+    transition: 1s;
+}
+
+.title a:hover{
+    background: transparent;
+    border: 1px solid #E4B741;
+    color: #fff;
+    transition: 1s;
+
+}
+
+.mob-icon,
+.for-mob{
+    display: none;
+}
+.nav-links-right{display: block}
+
+@media (max-width: 700px) {
+    .title h1{
+        font-size: 50px;
+    } 
+    
+    .nav-links ul li {
+        display: block;
+    }
+
+    .nav-links {
+        position: absolute;
+        background: #000;
+        height: 100vh;
+        width: 40%;
+        top: 0;
+        right: -200px;
+        text-align: left;
+        z-index: 2;
+        transition: 1s;
+    }
+
+    .navb .mob-icon{
+        display: block;
+        color: #fff;
+        margin: 10px;
+        font-size: 50px;
+        cursor: pointer;
+    }
+
+    .for-mob{
+        display: block;
+    }
+
+    .nav-links-right{display: none}
+}
+
+
+/* sales */
+
+.sales{
+    background-color: #000;
+    color: #fff;
+    margin: auto;
+    width: 100%;
+    text-align: center;
+    padding-top: 100px;
+}
+
+.sales h2{
+    font-weight: bold;
+}
 
 
 button {
