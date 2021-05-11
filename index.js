@@ -15,6 +15,7 @@ const ordersRoutes = require('./routes/orders')
 const authRoutes = require('./routes/auth')
 
 const varMiddleware = require('./middleware/variables')
+const userMiddleware = require('./middleware/user')
 
 const User = require('./models/user')
 const MONGODB_URI = `mongodb+srv://mirkhat:vSMJcE5TdYsFKg3@cluster0.hxsu9.mongodb.net/foodstore`;
@@ -52,6 +53,7 @@ app.use(session({
 }))
 
 app.use(varMiddleware)
+app.use(userMiddleware)
 
 // render pages
 app.use('/', homeRoutes)
