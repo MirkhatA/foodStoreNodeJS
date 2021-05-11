@@ -7,15 +7,17 @@
             <li><a href="/foods">Menu</a></li>            
             <li><a href="/about">About</a></li>            
             <li><a href="/contact">Contacts</a></li>            
-            <li><a href="/card">Card</a></li>            
-    
-            <li><a href="/add">Add food</a></li>            
             
-            {{#if isOrder}}
-            <li class="active"><a href="/orders">Orders</a></li> 
+            {{#if isAuth}}
+                <li><a href="/card">Card</a></li>   
+                <li><a href="/add">Add food</a></li>            
+                <li><a href="/orders">Orders</a></li> 
+                <li><a href="/auth/logout">Logout</a></li> 
             {{else}}
-            <li><a href="/orders">Orders</a></li> 
+                <li><a href="/auth/login#login">login</a></li>  
             {{/if}}
+                      
+
         </ul>
     </div>
 </nav>

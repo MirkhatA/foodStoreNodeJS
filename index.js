@@ -2,6 +2,7 @@ const express = require('express'); // express connection
 const path = require('path'); // module path
 const exphbs = require('express-handlebars') // handlebars
 const mongoose = require('mongoose');
+const session = require('express-session');
 
 const homeRoutes = require('./routes/home') //home route
 const addRoutes = require('./routes/add')
@@ -10,6 +11,9 @@ const contactRoutes = require('./routes/contact')
 const aboutRoutes = require('./routes/about')
 const cardRoutes = require('./routes/card')
 const ordersRoutes = require('./routes/orders')
+const authRoutes = require('./routes/auth')
+
+const varMiddleware = require('./middleware/variables')
 
 const User = require('./models/user')
 
@@ -33,20 +37,16 @@ app.set('view engine', 'hbs')
 app.set('views', 'views')
 
 
-app.use(async (req, res, next) => {
-    try {
-        const user = await User.findById('60982b51f2313757d08b4564')
-        req.user = user
-        next()
-    } catch (e) {
-        console.log(e);
-    }
-    
-})
-
-
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.urlencoded({extended: true}))
+app.use(session({
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: false
+}))
+
+app.use(varMiddleware)
+
 // render pages
 app.use('/', homeRoutes)
 app.use('/add', addRoutes)
@@ -55,7 +55,7 @@ app.use('/contact',contactRoutes)
 app.use('/about',aboutRoutes)
 app.use('/card', cardRoutes)
 app.use('/orders', ordersRoutes)
-
+app.use('/auth', authRoutes)
 
 
 
@@ -73,15 +73,15 @@ async function start() {
         })
 
         //is there users
-        const candidate = await User.findOne()
-        if (!candidate) {
-            const user = new User({
-                email: 'asen.mirkhat@bk.ru',
-                name: 'Mirkhat',
-                cart: {items: []}
-            })
-            await user.save()
-        }
+        // const candidate = await User.findOne()
+        // if (!candidate) {
+        //     const user = new User({
+        //         email: 'asen.mirkhat@bk.ru',
+        //         name: 'Mirkhat',
+        //         cart: {items: []}
+        //     })
+        //     await user.save()
+        // }
 
 
         //run server
