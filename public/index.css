@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
 @font-face {
     font-family: 'Post-No-Bills-Jaffna-SemiBold';
     src:url('Post-No-Bills-Jaffna-SemiBold.ttf.woff') format('woff'),
@@ -40,11 +41,17 @@
     padding: 2% 5%;
     justify-content: space-between;
     align-items: center;
+    position: relative;
+    z-index: 5;
 }
 
 .nav-links {
     flex: 1;
     text-align: center;
+}
+
+.background-dark {
+    background-color: #000;
 }
 
 .nav-links ul li{
@@ -138,6 +145,7 @@
     background: #E4B741;
     border-radius: 2px;
     transition: 1s;
+    border: 1px solid #E4B741;
 }
 
 .title a:hover{
@@ -154,41 +162,7 @@
 }
 .nav-links-right{display: block}
 
-@media (max-width: 700px) {
-    .title h1{
-        font-size: 50px;
-    } 
-    
-    .nav-links ul li {
-        display: block;
-    }
 
-    .nav-links {
-        position: absolute;
-        background: #000;
-        height: 100vh;
-        width: 40%;
-        top: 0;
-        right: -200px;
-        text-align: left;
-        z-index: 2;
-        transition: 1s;
-    }
-
-    .navb .mob-icon{
-        display: block;
-        color: #fff;
-        margin: 10px;
-        font-size: 50px;
-        cursor: pointer;
-    }
-
-    .for-mob{
-        display: block;
-    }
-
-    .nav-links-right{display: none}
-}
 
 
 /* sales */
@@ -206,6 +180,119 @@
     font-weight: bold;
 }
 
+.glide {
+    margin-top: 80px;
+    padding-bottom: 80px;
+}
+
+.glide__slide img{
+    width: 100%;
+    
+}
+
+.glide__slide p {
+    text-align: left;
+}
+
+/* sales */
+
+/* deal */
+
+.deal {
+    background: #000;
+    color: #fff;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.deal h2{
+    font-weight: bold;
+}
+
+.deal h5 {
+    color: rgba(244, 174, 69, 1);
+}
+
+.deal h5, h2{
+    padding-top: 30px;
+    text-align: center;
+}
+
+.deal img {
+    width: 100%;
+}
+
+.deal p {
+    padding-top: 60px;
+}
+
+.deal a {
+    
+    display: inline-block;
+    text-decoration: none;
+    color: #000;
+    position: relative;
+    cursor: pointer;
+    padding: 10px 30px;
+    font-weight: bold;
+    background: #E4B741;
+    border-radius: 2px;
+    transition: 1s;
+    border: 1px solid #E4B741;
+}
+
+.deal a:hover{
+    background: transparent;
+    border: 1px solid #E4B741;
+    color: #fff;
+    transition: 1s;
+
+}
+
+/* deal */
+
+/* about */
+
+.about {
+    background: #F4AE45;
+    padding-top: 90px;
+    padding-bottom: 60px;
+}
+
+.about p {
+    padding-bottom: 20px;
+}
+
+.about a {
+    display: inline-block;
+    text-decoration: none;
+    color: #E4B741;
+    position: relative;
+    cursor: pointer;
+    padding: 10px 30px;
+    font-weight: bold;
+    background: #000;
+    border-radius: 2px;
+    transition: 1s;
+    border: 2px solid #000;
+}
+
+.about a:hover{
+    background: transparent;
+    border: 2px solid #000;
+    color: #000;
+    transition: 1s;
+}
+
+.about h5{ font-weight: bold; }
+
+.about h1{ 
+    font-weight: bold;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+/* about */
 
 button {
     padding: 9px 25px;
@@ -267,9 +354,52 @@ button:hover {
 }
 
 
-
+.foods {
+    background: #000;
+}
 
 
 .auth {
     padding-top: 1rem;
+}
+
+
+@media (max-width: 700px) {
+    .title h1{
+        font-size: 50px;
+    } 
+    
+    .nav-links ul li {
+        display: block;
+    }
+
+    .nav-links {
+        position: absolute;
+        background: #000;
+        height: 100vh;
+        width: 40%;
+        top: 0;
+        right: -200px;
+        text-align: left;
+        z-index: 2;
+        transition: 1s;
+    }
+
+    .navb .mob-icon{
+        display: block;
+        color: #fff;
+        margin: 10px;
+        font-size: 50px;
+        cursor: pointer;
+    }
+
+    .for-mob{
+        display: block;
+    }
+
+    .nav-links-right{display: none}
+
+    .deal p {
+        padding-top: 0px;
+    }
 }
