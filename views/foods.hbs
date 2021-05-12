@@ -4,8 +4,7 @@
     {{#if foods.length}}
 
     {{#each foods}}
-    <div class="row">
-        <div class="col s6 offset-3">
+        <div class="col-md-3">
             <div class="card">
                 <div class="card-image">
                     <img src="{{img}}" alt="{{title}}">
@@ -14,6 +13,7 @@
                     <span class="card-title">{{title}}</span>
                     <p class="price">{{price}}</p>
                 </div>
+
                 <div class="card-action actions">
                     <a href="/foods/{{id}}" target="_blank">Open</a>
 
@@ -27,7 +27,6 @@
                 </div>
             </div>
         </div>
-    </div>
     {{/each}}
     {{else}}
     <p>Nothing here</p>
