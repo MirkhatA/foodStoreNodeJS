@@ -16,16 +16,54 @@ router.get('/logout', async (req, res) => {
 })
 
 router.post('/login', async (req, res) => {
-    const user = await User.findById('60982b51f2313757d08b4564')
+    try {
+        const {email, password} = req.body;
 
-    req.session.user = user
-    req.session.isAuthenticated = true;
-    req.session.save(err => {
-        if (err) {
-            throw err;
+        const candidate = await User.findOne({ email })
+
+        // is there such email
+        if (candidate) {
+            const samePass = password === candidate.password;
+
+            if (samePass) {
+                req.session.user = User
+                req.session.isAuthenticated = true;
+                req.session.save(err => {
+                    if (err) {
+                        throw err;
+                    }
+                    res.redirect('/');
+                })
+            } else {
+                res.redirect('/auth/login#logi')
+            }
+        } else {
+            res.redirect('/auth/login#logi')
         }
-        res.redirect('/');
-    })
+    } catch (e) {
+        console.log(e);
+    }
+})
+
+router.post('/register', async (req, res) => {
+    try {
+        const {email, password, repeat, name} = req.body
+
+        //if such user is in db
+        const candidate = await User.findOne({email});
+        if (candidate) {
+            res.redirect('/auth/login#register');
+        } else {
+            const user = new User({
+                email, name, password, cart: {items: []}
+            })
+            // save user
+            await user.save()
+            res.redirect('/auth/login#login');
+        }
+    } catch (e) {
+        console.log(e);
+    }
 })
 
 module.exports = router

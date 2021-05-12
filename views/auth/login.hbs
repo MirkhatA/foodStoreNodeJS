@@ -20,6 +20,7 @@
                 <h1>Login</h1>
                 <p class="text-center pt-3">Welcome! Please log in before placing orders.</p>
                 <form action="/auth/login" method="post">
+
                     <div class="input-field">
                         <input name="email" id="email" type="email" class="validate" required>
                         <label for="email">Email</label>
@@ -47,7 +48,7 @@
                     <div class="input-field">
                         <input name="email" id="remail" type="email" class="validate" required>
                         <label for="remail">Email</label>
-                        <span class="helper-text" data-error="wrpng name"></span>
+                        <span class="helper-text" data-error="Wrong name"></span>
                     </div>
 
                     <div class="input-field">
@@ -60,6 +61,12 @@
                         <input name="confirm" id="confirm" type="password" class="validate" required>
                         <label for="confirm">Repeat your password</label>
                         <span class="helper-text" data-error="Wrong password"></span>
+                    </div>
+
+                    <div class="input-field">
+                        <input name="name" id="name" type="text" class="validate" required>
+                        <label for="name">Your name</label>
+                        <span class="helper-text" data-error="Enter your name"></span>
                     </div>
 
                     <button class="col-12 log-btn" type="submit" class="btn btn-primary">Register</button>
