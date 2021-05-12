@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore = require('connect-mongodb-session')(session)
 
+
 const homeRoutes = require('./routes/home') //home route
 const addRoutes = require('./routes/add')
 const foodRoutes = require('./routes/foods')
@@ -41,6 +42,7 @@ const store = new MongoStore({
 app.engine('hbs', hbs.engine)
 app.set('view engine', 'hbs')
 app.set('views', 'views')
+
 
 app.use(express.static(path.join(__dirname, 'images')))
 app.use(express.static(path.join(__dirname, 'public')))
