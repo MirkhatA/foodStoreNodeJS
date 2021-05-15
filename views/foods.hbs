@@ -1,34 +1,40 @@
 <section class="foods">
-    <h1>Menu</h1>
+    <div class="container">
+        <h1>Menu</h1>
 
-    {{#if foods.length}}
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            {{#if foods.length}}
+                {{#each foods}}
+                    <div class="col">
+                        <div class="card card-div" style="border: none;">
+                            <img src="{{img}}" alt="{{title}}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{title}}</h5>
+                                <p class="price">{{price}}</p>
 
-    {{#each foods}}
-        <div class="col-md-3">
-            <div class="card">
-                <div class="card-image">
-                    <img src="{{img}}" alt="{{title}}">
-                </div>
-                <div class="card-content">
-                    <span class="card-title">{{title}}</span>
-                    <p class="price">{{price}}</p>
-                </div>
 
-                <div class="card-action actions">
-                    <a href="/foods/{{id}}" target="_blank">Open</a>
+                                <div class="card-action">
+                                        <a href="/foods/{{id}}">Open</a>
 
-                    {{#if @root.isAuth}}
-                        <a href="/foods/{{id}}/edit?allow=true">Edit</a>
-                        <form action="/card/add" method="post">
-                            <input type="hidden" name="id" value="{{id}}">
-                            <button type="submit" class="btn btn-primary">buy</button>
-                        </form>
-                    {{/if}}
-                </div>
-            </div>
+                                        {{#if @root.isAuth}}
+                                            <a href="/foods/{{id}}/edit?allow=true">Edit</a>
+
+                                            <form action="/card/add" method="post">
+                                                <input type="hidden" name="_csrf" value="{{@root.csrf}}">
+                                                <input type="hidden" name="id" value="{{id}}">
+
+                                                <button type="submit" class="btn btn-primary">buy</button>
+                                            </form>
+
+                                        {{/if}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {{/each}}
+            {{else}}
+                <p>Nothing here</p>
+            {{/if}}
         </div>
-    {{/each}}
-    {{else}}
-    <p>Nothing here</p>
-    {{/if}}
+    </div>
 </section>

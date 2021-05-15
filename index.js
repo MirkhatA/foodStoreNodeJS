@@ -1,10 +1,11 @@
 const express = require('express'); // express connection
 const path = require('path'); // module path
-const exphbs = require('express-handlebars') // handlebars
+const csrf = require('csurf')
+
 const mongoose = require('mongoose');
+const exphbs = require('express-handlebars') // handlebars
 const session = require('express-session');
 const MongoStore = require('connect-mongodb-session')(session)
-
 
 const homeRoutes = require('./routes/home') //home route
 const addRoutes = require('./routes/add')
@@ -15,12 +16,13 @@ const cardRoutes = require('./routes/card')
 const ordersRoutes = require('./routes/orders')
 const authRoutes = require('./routes/auth')
 
+const User = require('./models/user')
 const varMiddleware = require('./middleware/variables')
 const userMiddleware = require('./middleware/user')
 
-const User = require('./models/user')
 const MONGODB_URI = `mongodb+srv://mirkhat:vSMJcE5TdYsFKg3@cluster0.hxsu9.mongodb.net/foodstore`;
 const app = express(); // app is result of function express is analogue of server
+
 
 const hbs = exphbs.create({
     defaultLayout: 'main',
@@ -30,13 +32,10 @@ const hbs = exphbs.create({
         allowProtoMethodsByDefault: true
     }
 })
-
 const store = new MongoStore({
     collection: 'sessions',
     uri: MONGODB_URI
 })
-
-
 
 // add hbs into express
 app.engine('hbs', hbs.engine)
@@ -51,9 +50,9 @@ app.use(session({
     secret: 'secret',
     resave: false,
     saveUninitialized: false,
-    store: store
+    store
 }))
-
+app.use(csrf())
 app.use(varMiddleware)
 app.use(userMiddleware)
 

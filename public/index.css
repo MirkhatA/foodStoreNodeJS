@@ -328,41 +328,9 @@ button:hover {
     font-size: 17px;
 }
 
-.food {
-    width: 10px;
-    
-    flex-direction: column;
-    align-items: center;
-}
-
-.food h1{
-    margin-bottom: 2rem;
-}
-
-.food img {
-    max-width: 600px;
-    height: auto;
-}
-
-.food .price.big {
-    font-size: 2 rem;
-}
-
-.card-action.actions {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.food-form {
-    margin-bottom: 1rem;
-}
-
-
 .foods {
-    background: #000;
+    color: #fff;
 }
-
 
 /* auth */
 .auth {
@@ -442,6 +410,24 @@ button:hover {
     opacity: 0.2;
 }
 
+/* card */
+
+.card-body {
+    background-color: #000000;
+}
+
+.foods .card img{
+    height: 300px;
+}
+
+
+
+/* card */
+
+.card-section {
+    background: #fff;
+    color: #000000;
+}
 
 
 /* auth */
@@ -491,5 +477,4 @@ button:hover {
         padding-top: 0px;
     }
 
-    
 }

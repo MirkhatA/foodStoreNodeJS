@@ -15,7 +15,8 @@
 
     <div class="container log-form">
         <div class="row justify-content-center">
-            
+
+            <!-- login form -->
             <div id="login" class="col-md-5">
                 <h1>Login</h1>
                 <p class="text-center pt-3">Welcome! Please log in before placing orders.</p>
@@ -33,7 +34,7 @@
                         <span class="helper-text" data-error="Wrong password"></span>
                     </div>
 
-                    
+                    <input type="hidden" name="_csrf" value="{{csrf}}">
 
                     <button class="col-12 log-btn" type="submit" class="btn btn-primary">Login</button>
                 </form>
@@ -41,7 +42,7 @@
 
 
 
-
+            <!-- register form -->
             <div id="register" class="col-md-5">
                 <h1>Registration</h1>
                 <form action="/auth/register" method="post">
@@ -68,6 +69,8 @@
                         <label for="name">Your name</label>
                         <span class="helper-text" data-error="Enter your name"></span>
                     </div>
+
+                    <input type="hidden" name="_csrf" value="{{csrf}}">
 
                     <button class="col-12 log-btn" type="submit" class="btn btn-primary">Register</button>
                 </form>

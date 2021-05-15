@@ -1,6 +1,5 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
 
@@ -39,11 +38,14 @@
     if ($card) {
         $card.addEventListener('click', event => {
             if (event.target.classList.contains('js-remove')) {
-                const id = event.target.dataset.id
-                
+                const id = event.target.dataset.id;
+                const csrf = event.target.dataset.csrf;
                 
                 fetch('/card/remove/' + id, {
-                    method: 'delete'
+                    method: 'delete',
+                    headers: {
+                        'X-XSRF-TOKEN': csrf
+                    },
                 }).then(res => res.json())
                 .then(card => {
                     if (card.foods.length) {
@@ -53,9 +55,9 @@
                                 <td>${c.title}</td>
                                 <td>${c.count}</td>
                                 <td>${toCurr(c.price)}</td>
-                                
+
                                 <td>
-                                    <button class="btn btn-samll js-remove" data-id="${c.id}">Delete</button>
+                                    <button class="btn btn-small js-remove" data-id='${c.id}'>Delete</button>
                                 </td>
                             </tr>
                             `
@@ -95,3 +97,6 @@
 
 
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+

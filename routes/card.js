@@ -19,9 +19,8 @@ function computePrice(foods){
 
 
 router.post('/add', auth, async(req, res) => {
-    const food = await Food.findById(req.body.id)
-    await req.user.addToCart(food)
-
+    const food = await Food.findById(req.body.id);
+    await req.user.addToCart(food);
     // redirect
     res.redirect('/card')
 })
@@ -40,8 +39,8 @@ router.delete('/remove/:id', auth, async (req, res) => {
 
 router.get('/', auth, async (req, res) => {
     const user = await req.user
-    .populate('cart.items.foodId')
-    .execPopulate()
+        .populate('cart.items.foodId')
+        .execPopulate()
 
     const foods = mapCartItems(user.cart)
 

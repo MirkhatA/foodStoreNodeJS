@@ -1,43 +1,51 @@
-<h1>Card</h1>
+<section class="card-section">
+    <h1>Card</h1>
 
-<div id="card">
-{{#if foods.length}}
-    <table>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Amount</th>
-                <th>Price</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
+    <div id="card">
+        {{#if foods.length}}
+            <table>
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Amount</th>
+                    <th>Price</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
 
-        <tbody>
+                <tbody>
 
-            {{#each foods}}
-            <tr>
-                <td>{{title}}</td>
-                <td>{{count}}</td>
-                <td class="price card-price">{{price}}</td>
-                
-                <td>
-                    <button class="btn btn-samll js-remove" data-id="{{id}}">Delete</button>
-                </td>
-            </tr>
-            {{/each}}
+                {{#each foods}}
+                    <tr>
+                        <td>{{title}}</td>
+                        <td>{{count}}</td>
+                        <td class="price card-price">{{price}}</td>
 
-        </tbody>
-    </table>
+                        <td>
+                            <button
+                                    class="btn btn-samll js-remove"
+                                    data-id="{{id}}"
+                                    data-csrf="{{@root.csrf}}"
+                            >Delete
+                            </button>
+                        </td>
+                    </tr>
+                {{/each}}
 
-    <p>
-        <strong>Price: </strong> 
-        <p class="price">{{price}}</p>
-    </p>
+                </tbody>
+            </table>
 
-    <form action="/orders" method="post">
-        <button type="submit" class="btn">Make Order</button>
-    </form>
-{{else}}
-    empty
-{{/if}}
-</div>
+            <p>
+                <strong>Price: </strong>
+            <p class="price">{{price}}</p>
+            </p>
+
+            <form action="/orders" method="post">
+                <input type="hidden" name="_csrf" value="{{csrf}}">
+                <button type="submit" class="btn">Make Order</button>
+            </form>
+        {{else}}
+            empty
+        {{/if}}
+    </div>
+</section>
