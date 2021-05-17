@@ -20,6 +20,10 @@
             <div id="login" class="col-md-5">
                 <h1>Login</h1>
                 <p class="text-center pt-3">Welcome! Please log in before placing orders.</p>
+
+                {{#if logError}}
+                    <p class="alert">{{logError}}</p>
+                {{/if}}
                 <form action="/auth/login" method="post">
 
                     <div class="input-field">
@@ -45,6 +49,9 @@
             <!-- register form -->
             <div id="register" class="col-md-5">
                 <h1>Registration</h1>
+                {{#if regError}}
+                    <p class="alert">{{regError}}</p>
+                {{/if}}
                 <form action="/auth/register" method="post">
                     <div class="input-field">
                         <input name="email" id="remail" type="email" class="validate" required>

@@ -478,3 +478,9 @@ button:hover {
     }
 
 }
+
+.alert {
+    padding: .5rem 1rem;
+    text-align: center;
+    color: #c94040;
+}

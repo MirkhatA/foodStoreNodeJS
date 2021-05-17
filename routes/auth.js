@@ -6,7 +6,9 @@ const bcrypt = require('bcryptjs') //encrypt pass
 router.get('/login', async (req, res) => {
     res.render('auth/login', {
         title: 'Login',
-        isLogin: true
+        isLogin: true,
+        logError: req.flash('logError'),
+        regError: req.flash('regError')
     })
 })
 
@@ -37,9 +39,11 @@ router.post('/login', async (req, res) => {
                     res.redirect('/');
                 })
             } else {
+                req.flash('logError', 'password is incorrect')
                 res.redirect('/auth/login#logi')
             }
         } else {
+            req.flash('logError', 'Such user is not created')
             res.redirect('/auth/login#logi')
         }
     } catch (e) {
@@ -54,6 +58,7 @@ router.post('/register', async (req, res) => {
         //if such user is in db
         const candidate = await User.findOne({email});
         if (candidate) {
+            req.flash('regError', 'User is already created')
             res.redirect('/auth/login#register');
         } else {
             const hashPass = await bcrypt.hash(password, 8)
