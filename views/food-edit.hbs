@@ -1,36 +1,41 @@
-<h1>Edit food "{{food.title}}"</h1>
+<section class="add-food">
+    <div class="container">
+        <h1>Edit food "{{food.title}}"</h1>
 
-<form action="/foods/edit" method="post" class="food-form">
-    <div class="input-field">
-        <input name="title" id="title" type="text" class="validate" required value="{{food.title}}">
-        <label for="title">Food Name</label>
+        <form action="/foods/edit" method="post" class="food-form">
+            <div class="input-field">
+                <input name="title" id="title" type="text" class="validate" required value="{{food.title}}">
+                <label for="title">Food Name</label>
 
-        <span class="helper-text" data-error="wrpng name"></span>
+                <span class="helper-text" data-error="wrpng name"></span>
+            </div>
+
+            <div class="input-field">
+                <input name="price" id="price" type="number" class="validate" required min="1" value="{{food.price}}">
+                <label for="price">Food price</label>
+
+                <span class="helper-text" data-error="wrong price"></span>
+            </div>
+
+            <div class="input-field">
+                <input name="img" id="img" type="text" class="validate" required value="{{food.img}}">
+                <label for="img">Food image</label>
+
+                <span class="helper-text" data-error="wrong url"></span>
+            </div>
+
+            <input type="hidden" name="id" value="{{food.id}}">
+            <input type="hidden" name="_csrf" value="{{csrf}}">
+
+            <button type="submit" class="btn btn-primary">Edit food</button>
+        </form>
+
+        {{!-- delete button --}}
+        <form action="/foods/remove" method="post">
+            <input type="hidden" name="_csrf" value="{{csrf}}">
+            <input type="hidden" name="id" value="{{ food.id }}">
+            <button class="btn red">Delete</button>
+        </form>
+
     </div>
-
-    <div class="input-field">
-        <input name="price" id="price" type="number" class="validate" required min="1" value="{{food.price}}">
-        <label for="price">Food price</label>
-
-        <span class="helper-text" data-error="wrong price"></span>
-    </div>
-
-    <div class="input-field">
-        <input name="img" id="img" type="text" class="validate" required value="{{food.img}}">
-        <label for="img">Food image</label>
-
-        <span class="helper-text" data-error="wrong url"></span>
-    </div>
-
-    <input type="hidden" name="id" value="{{food.id}}">
-    <input type="hidden" name="_csrf" value="{{csrf}}">
-
-    <button type="submit" class="btn btn-primary">Edit food</button>
-</form>
-
-{{!-- delete button --}}
-<form action="/foods/remove" method="post">
-    <input type="hidden" name="_csrf" value="{{csrf}}">
-    <input type="hidden" name="id" value="{{ food.id }}">
-    <button class="btn red">Delete</button>
-</form>
+</section>

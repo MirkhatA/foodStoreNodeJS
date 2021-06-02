@@ -20,7 +20,7 @@ const authRoutes = require('./routes/auth')
 const varMiddleware = require('./middleware/variables')
 const userMiddleware = require('./middleware/user')
 
-const MONGODB_URI = `mongodb+srv://mirkhat:vSMJcE5TdYsFKg3@cluster0.hxsu9.mongodb.net/foodstore`;
+const keys = require('./keys')
 const app = express(); // app is result of function express is analogue of server
 
 
@@ -34,7 +34,7 @@ const hbs = exphbs.create({
 })
 const store = new MongoStore({
     collection: 'sessions',
-    uri: MONGODB_URI
+    uri: keys.MONGODB_URI
 })
 
 // add hbs into express
@@ -47,7 +47,7 @@ app.use(express.static(path.join(__dirname, 'images')))
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.urlencoded({extended: true}))
 app.use(session({
-    secret: 'secret',
+    secret: keys.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     store
@@ -75,7 +75,7 @@ const PORT = process.env.PORT || 4000
 async function start() {
     try {
         //mongodb connection
-        await mongoose.connect(MONGODB_URI, {
+        await mongoose.connect(keys.MONGODB_URI, {
             useNewUrlParser: true,
             useFindAndModify: false,
             useUnifiedTopology: true

@@ -1,7 +1,17 @@
 const {Router} = require('express')
-const router = Router()
+
+const nodemailer = require('nodemailer')
+const sendgrid = require('nodemailer-sendgrid-transport')
 const User = require('../models/user')
 const bcrypt = require('bcryptjs') //encrypt pass
+const keys = require('../keys')
+const regEmail = require('../emails/registration')
+
+const router = Router()
+
+const transporter = nodemailer.createTransport(sendgrid({
+    auth: {api_key: keys.SENDGRID_API_KEY}
+}))
 
 router.get('/login', async (req, res) => {
     res.render('auth/login', {
@@ -23,7 +33,7 @@ router.post('/login', async (req, res) => {
         const {email, password} = req.body;
 
         const candidate = await User.findOne({ email })
-
+        const admin_id = "609ce08a6813ec26c0e03cb6";
         // is there such email
         if (candidate) {
             //compare pass
@@ -68,6 +78,9 @@ router.post('/register', async (req, res) => {
             // save user
             await user.save()
             res.redirect('/auth/login#login');
+
+            await transporter.sendMail(regEmail(email))
+
         }
     } catch (e) {
         console.log(e);
