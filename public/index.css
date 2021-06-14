@@ -316,6 +316,27 @@ button:hover {
     padding: 0 2rem;
 }
 
+/* food-detail */
+
+.food-detail h1{
+    color: #fff;
+}
+
+.food-detail img{
+    width: 100%;
+}
+
+.food-detail p {
+    color: #fff;
+}
+
+.food-detail .text-price {
+    font-size: 22px;
+}
+
+/* food-detail */
+
+
 /* food */
 
 .price {
@@ -330,11 +351,16 @@ button:hover {
     color: #fff;
 }
 
+.foods a{
+    color: #fff;
+    text-decoration: none;
+}
+
 /* auth */
 .auth {
     /* padding-top: 1rem; */
     /* background: #000; */
-    
+    width: 100%;
     color: #fff;
 }
 
@@ -369,6 +395,7 @@ button:hover {
 
 .log-form {
     padding-top: 50px;
+    margin-bottom: 100px;
 }
 
 .auth h1 {
@@ -403,7 +430,7 @@ button:hover {
 #videoBG {
     position: fixed;
     z-index: -1;
-    width: 130%;
+    width: 100%;
     height: auto;
     opacity: 0.2;
 }
@@ -456,7 +483,6 @@ button:hover {
 
 .about{
     color: #000;
-    margin-bottom:130px;
 }
 
 body{
@@ -512,7 +538,26 @@ hr{
 
 
 
+/* profile */
 
+.profile {
+    color: #fff;
+}
+
+.profile button {
+    color: #fff;
+}
+
+.avatar {
+    max-width: 300px;
+    height: auto;
+}
+
+.profile input{
+    color: #fff;
+}
+
+/* profile */
 
 
 
@@ -522,7 +567,6 @@ hr{
     padding: 50px 0 20px 0;
     background-color: black;
     color: #878c94;
-    margin-top:100px;
 }
 .footer .title{
     text-align: left;

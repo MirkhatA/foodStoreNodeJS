@@ -16,13 +16,16 @@ const aboutRoutes = require('./routes/about')
 const cardRoutes = require('./routes/card')
 const ordersRoutes = require('./routes/orders')
 const authRoutes = require('./routes/auth')
+const profileRoutes = require('./routes/profile')
 
 const varMiddleware = require('./middleware/variables')
 const userMiddleware = require('./middleware/user')
+const fileMiddleware = require('./middleware/file')
 
 const keys = require('./keys')
-const app = express(); // app is result of function express is analogue of server
+const app = express(); // app is result of function express is analogue of serve
 
+const adminId = "60b88214971fde228000d466";
 
 const hbs = exphbs.create({
     defaultLayout: 'main',
@@ -30,7 +33,8 @@ const hbs = exphbs.create({
     runtimeOptions: {
         allowProtoPropertiesByDefault: true,
         allowProtoMethodsByDefault: true
-    }
+    },
+    helpers: require('./utils/hbs-helpers')
 })
 const store = new MongoStore({
     collection: 'sessions',
@@ -52,10 +56,12 @@ app.use(session({
     saveUninitialized: false,
     store
 }))
+app.use(fileMiddleware.single('avatar'))
 app.use(csrf())
 app.use(flash())
 app.use(varMiddleware)
 app.use(userMiddleware)
+
 
 // render pages
 app.use('/', homeRoutes)
@@ -66,7 +72,7 @@ app.use('/about',aboutRoutes)
 app.use('/card', cardRoutes)
 app.use('/orders', ordersRoutes)
 app.use('/auth', authRoutes)
-
+app.use('/profile', profileRoutes)
 
 
 // port

@@ -1,8 +1,20 @@
-<div class="food">
-    <h1>{{food.title}}</h1>
+<section class="food-detail">
+    <div class="container">
+        <div class="food">
 
-    <img src="{{food.img}}" alt="{{food.title}}">
 
-    <p class="price big">{{food.price}}</p>
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="{{food.img}}" alt="{{food.title}}">
+                </div>
 
-</div>
+                <div class="col-md-6">
+                    <h1>{{food.title}}</h1>
+                    <p class="text-price">price: <span class="price big">{{food.price}}</span></p>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</section>

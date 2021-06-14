@@ -1,12 +1,14 @@
 const {Router} = require('express')
-
+const bcrypt = require('bcryptjs') //encrypt pass
+const {validationResult} = require('express-validator/check')
 const nodemailer = require('nodemailer')
 const sendgrid = require('nodemailer-sendgrid-transport')
+
 const User = require('../models/user')
-const bcrypt = require('bcryptjs') //encrypt pass
 const keys = require('../keys')
 const regEmail = require('../emails/registration')
 
+const {registerValidators} = require('../utils/validators')
 const router = Router()
 
 const transporter = nodemailer.createTransport(sendgrid({
@@ -33,7 +35,7 @@ router.post('/login', async (req, res) => {
         const {email, password} = req.body;
 
         const candidate = await User.findOne({ email })
-        const admin_id = "609ce08a6813ec26c0e03cb6";
+        const admin_id = "60b88214971fde228000d466";
         // is there such email
         if (candidate) {
             //compare pass
@@ -61,12 +63,20 @@ router.post('/login', async (req, res) => {
     }
 })
 
-router.post('/register', async (req, res) => {
-    try {
-        const {email, password, repeat, name} = req.body
 
+
+router.post('/register', registerValidators, async (req, res) => {
+    try {
+        const {email, password, confirm, name} = req.body
         //if such user is in db
         const candidate = await User.findOne({email});
+
+        const errors = validationResult(req)
+        if (!errors.isEmpty()) {
+            req.flash('registerError', errors.array()[0].msg)
+            return res.status(422).redirect('/auth/login#register')
+        }
+
         if (candidate) {
             req.flash('regError', 'User is already created')
             res.redirect('/auth/login#register');
@@ -77,9 +87,12 @@ router.post('/register', async (req, res) => {
             })
             // save user
             await user.save()
+
+            // send email
+            await regEmail.sendEmail(email)
+
             res.redirect('/auth/login#login');
 
-            await transporter.sendMail(regEmail(email))
 
         }
     } catch (e) {

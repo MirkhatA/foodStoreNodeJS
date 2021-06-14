@@ -6,25 +6,36 @@ const router = Router()
 
 //get all foods from db
 router.get('/', async (req, res) => {
-    const foods = await Food.find()
-    .populate('userId', 'email name')
-    .select('price title img')
+    try {
+        const foods = await Food.find()
+            .populate('userId', 'email name')
+            .select('price title img')
 
-    res.render('foods', {
-        title: 'Food',
-        isFood: true,
-        foods
-    })
+        res.render('foods', {
+            title: 'Food',
+            isFood: true,
+            userId: req.user ? req.user._id.toString() : null,
+            foods
+        })
+    } catch (e) {
+        console.log(e);
+    }
+    
+
 })
 
 //get food
 router.get('/:id', async (req, res) => {
-    const food = await Food.findById(req.params.id)
-    res.render('food', {
-        layout: 'empty',
-        title: `Food ${food.title}`,
-        food
-    })
+    try {
+        const food = await Food.findById(req.params.id)
+        res.render('food', {
+            layout: 'empty',
+            title: `Food ${food.title}`,
+            food
+        })
+    } catch(e) {
+        console.log(e);
+    }
 })
 
 //edit food by id
@@ -33,26 +44,52 @@ router.get('/:id/edit', auth, async (req, res) => {
         return res.redirect('/')
     }
 
-    const food = await Food.findById(req.params.id)
+    try {
+        const food = await Food.findById(req.params.id)
 
-    res.render('food-edit', {
-        title: `Edit ${food.title}`,
-        food
-    })
+        if (food.userId.toString() !== req.user._id.toString()) {
+            return res.redirect('/foods')
+        }
+
+        res.render('food-edit', {
+            title: `Edit ${food.title}`,
+            food
+        })
+    } catch (e) {
+        console.log(e);
+    }
+
+
+
 })
 
 //update
 router.post('/edit', auth, async (req, res) => {
-    const {id} = req.body;
-    delete req.body.id;
-    await Food.findByIdAndUpdate(id, req.body);
-    res.redirect('/foods');
+    try {
+        const {id} = req.body;
+        delete req.body.id;
+
+        const food = await Food.findById(id)
+
+        if (food.userId.toString() !== req.user._id.toString()) {
+            return res.redirect('/foods')
+        }
+        Object.assign(food, req.body)
+        await food.save()
+        res.redirect('/foods');
+    } catch (e) {
+        console.log(e);
+    }
+
 })
 
 // delete method
 router.post('/remove', auth, async (req, res) => {
     try {
-        await Food.deleteOne({_id: req.body.id});
+        await Food.deleteOne({
+            _id: req.body.id,
+            userId: req.user._id
+        });
         res.redirect('/foods');
     } catch(e) {
         console.log(e);
