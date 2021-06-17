@@ -537,7 +537,13 @@ hr{
 }
 
 
+.reset {
+    color: #fff;
+}
 
+.reset input {
+    color: #fff;
+}
 /* profile */
 
 .profile {
