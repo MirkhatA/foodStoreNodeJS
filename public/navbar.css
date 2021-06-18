@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
+
+
+
+
+
+header
+{
+    position:fixed;
+    top:0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.6s;
+    padding:  40px 70px;
+    z-index:10000;
+}
+
+.ul1{
+    position: relative;
+    transition: 0.6s;
+    width: 10%;
+}
+
+.ul2{
+    position: relative;
+    display: flex;
+    transition: 0.6s;
+    width: 80%;
+}
+
+.ul3{
+	position: relative;
+    display: flex;
+    transition: 0.6s;
+    width: 10%;
+    margin-right: 30px;
+}
+
+.login-hover {
+    text-decoration: none;
+    /*color: #fff;*/
+}
+
+a:hover{
+    text-decoration: none;
+    /*color: #fff;*/
+}
+
+.logo {
+    font-family: 'Post-No-Bills-Jaffna-SemiBold';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+
+    text-decoration: none;
+}
+
+header .logo {
+position: relative;
+/*font-weight: 700;*/
+
+text-decoration:none;
+font-size: 35px;
+
+letter-spacing: 2px;
+transition: 4s;
+}
+
+header ul
+{
+  position: relative;
+  display: flex;
+  justify-content:center;
+  align-items: center;	
+}
+
+header ul li
+{
+	position: relative;
+	list-style: none;
+}
+
+header ul li a
+{
+	position: relative;
+	margin: 0 15px;
+	text-decoration: none;
+	color: #fff;
+	letter-spacing: 2px;
+
+	transition: 0.6s;
+}
+
+header.sticky
+{
+	padding: 5px 100px;
+	background: white;
+    color: black;
+}
+
+.sticky a {
+    color: black;
+}
+
+
+
+@media screen and (max-width: 800px){
+    .ul1{
+        width:5%;
+    }
+
+    .ul2{
+        width:80%;
+    }
+
+    .ul3{
+        width:5%;
+    }
+
+
+}
+
+
+@media screen and (max-width: 650px){
+	header{
+		margin-right:200px ;
+
+		display: flex;
+		flex-direction:column;
+		float: left;
+		width:100%;
+	}
+
+	header.sticky {
+        padding: 5px 100px;
+        background: black;
+    }
+
+    .ul1{
+        width:100%;
+        margin-right:10px;
+        margin-bottom: 20px;
+    }
+
+    .ul2{
+        width:100%;
+        float: left;
+    }
+
+    .ul3{
+        width:100%;
+        margin-top: 20px;
+        margin-left:11px;
+    }
+}
+
